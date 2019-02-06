@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import { View, Text, Pano, AppRegistry, asset, StyleSheet } from 'react-vr';
 
 class WorldTour extends Component {
+  constructor() {
+    super() 
+
+    this.state = {
+      showMenu: false
+    }
+  }
+
+
+  toggleMenu() {
+    this.setState({showMenu: !this.state.showMenu})
+  }
+
   render() {
     return (
       <View>
         <Pano source={asset('starry-sky.jpg')}></Pano>
-        <View style={styles.menuButton}>
-          <Text style={styles.menuButtonText}>Open Menu</Text>
+        <View style={styles.menuButton}
+        onEnter={() => this.toggleMenu()}>
+          <Text style={styles.menuButtonText}>
+            {this.state.showMenu ? "Close Menu" : "Open Menu"}
+          </Text>
         </View>
       </View>
     )
